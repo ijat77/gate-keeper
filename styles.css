@@ -15,6 +15,30 @@ body {
     /*max-width: 75%;*/
 }
 
+input {
+    padding: 10px;
+    border: 0.5px solid black;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    resize: none;
+    font-family: sans-serif;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.passinput {
+    padding: 10px;
+    border: 0.5px solid black;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    resize: none;
+    font-family: sans-serif;
+}
+
 .col-center {
     margin: auto;
     /*width: 60%;*/
@@ -31,10 +55,14 @@ body {
     padding: 2px;
 }
 
-.grid-container>div {
+.grid-container>.grid-item {
     /*background-color: rgba(255, 255, 255, 0.8);*/
     text-align: center;
     padding: 8px 0;
+}
+
+.left {
+    text-align: left;
 }
 
 
