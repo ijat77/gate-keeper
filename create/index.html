@@ -14,11 +14,11 @@
 
     <link rel="stylesheet" href="../styles.css?v=1.0">
     <script type="text/javascript" src="../b64.js"></script>
-    <script type="text/javascript" src="../index.js">
-    </script>
+    <script type="text/javascript" src="../crypto.js"></script>
+    <script type="text/javascript" src="generate.js"></script>
 </head>
 
-<body onload="main()">
+<body>
     <div class="col-center">
         <div class="grid-container left">
             <div>Create link</div>
@@ -40,7 +40,7 @@
                 <input class="fullwidth" name="password">
             </div>
             <div>
-                <button onclick="main()">Create link</button>
+                <button onclick="doEncrypt()">Create link</button>
             </div>
         </div>
 
