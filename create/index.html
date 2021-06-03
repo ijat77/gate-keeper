@@ -21,27 +21,52 @@
 <body>
     <div class="col-center">
         <div class="grid-container left">
-            <div>Create link</div>
-            <div>First link</div>
-            <div>
-                <input class="fullwidth" name="password">
+            <div class="center title">Create link</div>
+            <div class="link-message">
+                <label for="message" class="fullwidth">Message (optional)</label>
+                <input id="message" class="fullwidth" placeholder="Leave blank if u don't want to include any message" />
             </div>
-            <div>Password</div>
-            <div>
-                <input class="fullwidth" name="password">
+
+            <div class="link-1">
+                <label for="url-1">First url</label>
+                <div>
+                    <input class="fullwidth" id="url-1" name="url-1" />
+                </div>
+                <label for="password-1">Password</label>
+                <div>
+                    <input class="fullwidth" id="password-1" name="password-1" />
+                </div>
             </div>
-            <div>2nd</div>
-            <div>Second link</div>
-            <div>
-                <input class="fullwidth" name="password">
+
+            <div class="link-2">
+                <label for="url-2">Second url</label>
+                <div>
+                    <input class="fullwidth" id="url-2" name="url-2" />
+                </div>
+                <label for="password-2">Password</label>
+                <div>
+                    <input class="fullwidth" id="password-2" name="password-2" />
+                </div>
             </div>
-            <div>Password</div>
-            <div>
-                <input class="fullwidth" name="password">
+
+            <div class="link-3">
+                <label for="url-3">Default url</label>
+                <div>
+                    <input class="fullwidth" id="url-3" name="url-3" />
+                </div>
             </div>
+
             <div>
                 <button onclick="doEncrypt()">Create link</button>
             </div>
+
+            <div class="output">
+                <label for="output">Link</label>
+                <input class="fullwidth" type="text" id="output" readonly/>
+                <button id="copy" onclick="copyValue('output')">Copy</button>
+            </div>
+
+
         </div>
 
     </div>
