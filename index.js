@@ -34,6 +34,11 @@ function error(text){
 
 }
 
+function showPanel(panelId) {
+  console.log("showing panel: " + panelId);
+  document.querySelector(panelId).style.display = "inherit";
+}
+
 async function main() {
     if (window.location.hash) {
         const hash = window.location.hash.slice(1);
@@ -50,9 +55,10 @@ async function main() {
         if (message) {
           document.getElementById("title").innerHTML = message;
         }
+        showPanel("#panel-input");
 
     } else {
-        error("no data");
+        showPanel("#panel-error");
     }
 }
 
@@ -82,9 +88,17 @@ async function decrypt() {
 }
 
 function proceedLink(link) {
-  error(link);
-  console.log('SUCCESS!');
-  console. log("LINK: " + link);
+  error("Succeed, opening link");
+  //console.log('SUCCESS!');
+  //console. log("LINK: " + link);
+
+  try{
+    let objUrl = new URL(link);
+    window.location.href = link;
+  } catch {
+    error("Invalid link");
+    return;
+  }
 }
 
 async function doDecrypt(hash, password) {

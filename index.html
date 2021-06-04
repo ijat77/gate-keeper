@@ -19,7 +19,7 @@
 <body onload="main()">
     <div class="col-center">
         <div class="">
-            <div class="panel">
+            <div id="panel-input" class="panel" style="display: none;">
               <div class="grid-item" id="title">Enter password</div>
               <div class="grid-item">
                   <input class="passinput" id="password" name="password" type="password">
@@ -28,6 +28,9 @@
                   <button class="passbutton" onclick="decrypt()">Ok</button>
               </div>
               <div id="errorPrompt">TO Fade Out</div>
+            </div>
+            <div id="panel-error" style="display: none;">
+              <p>No data</p>
             </div>
         </div>
     </div>
