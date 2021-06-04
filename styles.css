@@ -32,6 +32,8 @@ label {
 #errorPrompt {
   opacity: 0;
   margin-top: 24PX;
+  font-family: Arial, Helvetica, sans-serif;
+  color: crimson;
 }
 
 [class*="link-"] {

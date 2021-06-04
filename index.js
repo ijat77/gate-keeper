@@ -35,8 +35,7 @@ function error(text){
 }
 
 function showPanel(panelId) {
-  console.log("showing panel: " + panelId);
-  document.querySelector(panelId).style.display = "inherit";
+  document.getElementById(panelId).style.display = "block";
 }
 
 async function main() {
@@ -47,6 +46,7 @@ async function main() {
             params = JSON.parse(atob(hash));
         } catch(e) {
             error("Invalid link");
+            showPanel("panel-error");
             return;
         }
         
@@ -55,10 +55,10 @@ async function main() {
         if (message) {
           document.getElementById("title").innerHTML = message;
         }
-        showPanel("#panel-input");
+        showPanel("panel-input");
 
     } else {
-        showPanel("#panel-error");
+        showPanel("panel-error");
     }
 }
 
@@ -94,7 +94,7 @@ function proceedLink(link) {
 
   try{
     let objUrl = new URL(link);
-    window.location.href = link;
+    window.location.replace(link);
   } catch {
     error("Invalid link");
     return;
