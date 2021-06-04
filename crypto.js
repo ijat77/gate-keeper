@@ -72,7 +72,6 @@ var cryptoApi = {
     },
 
     decrypt: async function(text, password) {
-        console.log('start decrypt');
         const salt_len = iv_len = 16;
 
         const encrypted = fromBase64(text);

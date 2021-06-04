@@ -1,5 +1,5 @@
 async function doEncrypt() {
-    const baseUrl = "http://127.0.0.1:5500/#";
+    const baseUrl = "http://127.0.0.1:5500/";
 
     const message = document.getElementById("message").value;
     const url1 = document.getElementById("url-1").value;
@@ -42,10 +42,11 @@ async function doEncrypt() {
     console.log(atob(output));
     console.log(JSON.parse(atob(output)));
     //doDecrypt(encrypted1, "satu");
-    document.getElementById("output").value = `http://127.0.0.1:5500/#${output}`;
+    //document.getElementById("output").value = `http://127.0.0.1:5500/#${output}`;
+    document.getElementById("output").value = `${baseUrl}#${output}`;
     console.log('password: ' + password1);
     console.log(fragments["e1"]);
-    console.log("1: " + await doDecrypt("rthJ93uSGZMMa/1hijrw1UVX7Ue6aw7rdp4z64gCMm+tEf5peVDDRW6qWbmexC+LIEsu+m5pLiZKjsJH+1BHkPZ/hYAx", "satu"));
+    console.log("1: " + await doDecrypt(fragments["e2"], password2));
     //document.getElementById("output").value = output;
     //document.querySelector("#output").value
     return output;

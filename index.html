@@ -21,17 +21,21 @@
 
 <body onload="main()">
     <div class="col-center">
-        <div class="grid-container">
-            <div class="grid-item">Enter password</div>
-            <div class="grid-item">
-                <input class="passinput" id="password" name="password" type="password">
-            </div>
-            <div class="grid-item">
-                <button onclick="main()">Ok</button>
+        <div class="">
+            <div class="panel">
+              <div class="grid-item" id="title">Enter password</div>
+              <div class="grid-item">
+                  <input class="passinput" id="password" name="password" type="password">
+              </div>
+              <div class="grid-item-a">
+                  <button class="passbutton" onclick="decrypt()">Ok</button>
+              </div>
+              <div id="errorPrompt">TO Fade Out</div>
             </div>
         </div>
 
     </div>
+    
 
     <!-- Display errors in a big red box -->
     <div class="error col-center" style="display: none">
