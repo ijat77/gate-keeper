@@ -26,14 +26,15 @@ input {
 }
 
 label {
-    margin: 0px;
+    display: block;
+    margin-bottom: 4px;
 }
 
 #errorPrompt {
-  opacity: 0;
-  margin-top: 24PX;
-  font-family: Arial, Helvetica, sans-serif;
-  color: crimson;
+    opacity: 0;
+    margin-top: 24PX;
+    font-family: Arial, Helvetica, sans-serif;
+    color: crimson;
 }
 
 [class*="link-"] {
@@ -45,8 +46,7 @@ label {
 }
 
 .panel {
-  margin: 16px;
-  
+    margin: 16px;
 }
 
 .passinput {
@@ -61,7 +61,7 @@ label {
 }
 
 .passbutton {
-  padding: 8px 24px 8px 24px;
+    padding: 8px 24px 8px 24px;
 }
 
 .col-center {
@@ -71,7 +71,6 @@ label {
     padding: 2px;
     text-align: center;
 }
-
 
 .grid-container {
     display: grid;
