@@ -88,7 +88,7 @@ async function decrypt() {
 }
 
 function proceedLink(link) {
-  error("Succeed, opening link");
+  error("Unlocked, opening link");
   //console.log('SUCCESS!');
   //console. log("LINK: " + link);
 
