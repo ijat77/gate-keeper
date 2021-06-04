@@ -1,5 +1,6 @@
 async function doEncrypt() {
-    const baseUrl = "http://127.0.0.1:5500/";
+    //const baseUrl = "http://127.0.0.1:5500/";
+    const baseUrl = "https://ijat77.github.io/gate-keeper/";
 
     const message = document.getElementById("message").value;
     const url1 = document.getElementById("url-1").value;
