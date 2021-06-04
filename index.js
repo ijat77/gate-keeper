@@ -34,32 +34,21 @@ function error(text){
 
 }
 
-function error2(text) {
-    document.querySelector(".error").style.display = "inherit";
-    document.querySelector("#errortext").innerText = `Error: ${text}`;
-}
-
 async function main() {
     if (window.location.hash) {
         const hash = window.location.hash.slice(1);
-        //console.log(hash);
-        
+
         try {
             params = JSON.parse(atob(hash));
         } catch(e) {
             error("Invalid link");
             return;
         }
-        //console.log(params);
-        //console.log(params["e2"]);
-        //link2 = await doDecrypt(params["e2"], "dua");
-        //console.log("e2: " + link2);
-        //link3 = await doDecrypt(params["e3"], "afkla4^$QWkf;arg");
+        
         message = params["m"];
 
         if (message) {
           document.getElementById("title").innerHTML = message;
-          //console.log(message);
         }
 
     } else {
@@ -68,8 +57,6 @@ async function main() {
 }
 
 async function decrypt() {
-  //console.log("DECRYPTING");
-  //console.log(params);
   const password = document.getElementById("password").value;
   
   if (!password) {
@@ -105,10 +92,8 @@ async function doDecrypt(hash, password) {
     try {
         decrypted = await cryptoApi.decrypt(hash, password);
     } catch (e) {
-        //console.log("wrong password:");
         //console.log(e);
     }
-    //encodedHAsh = testObj.encode("saya");
-    //console.log(decrypted);
+    
     return decrypted;
 }

@@ -1,9 +1,3 @@
-const testObj = {
-    encode: function(text) {
-        return text + " - " + text;
-    }
-}
-
 const encoder = new TextEncoder('utf-8');
 const decoder = new TextDecoder('utf-8');
 
@@ -57,16 +51,6 @@ var cryptoApi = {
             ...iv,
             ...new Uint8Array(encrypted)
         ]);
-
-        /* console.log({
-          salt: toBase64(salt),
-          iv: toBase64(iv),
-          encrypted: toBase64(encrypted),
-          concatennated: hashedstring
-        }); */
-
-        //console.log('decrypting');
-        //this.decrypt(hashedstring,password);
 
         return hashedstring;
     },
