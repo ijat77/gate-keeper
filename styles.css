@@ -5,7 +5,7 @@
 
 html {
     font-family: sans-serif;
-    padding: 10px;
+    padding: 0px;
 }
 
 body {
@@ -19,7 +19,6 @@ input {
     padding: 8px;
     border: 0.5px solid black;
     border-radius: 3px;
-    margin-bottom: 15px;
     box-sizing: border-box;
     resize: none;
     font-family: sans-serif;
@@ -27,18 +26,13 @@ input {
 
 label {
     display: block;
-    margin-bottom: 4px;
+    margin: 8px 0 4px 0;
 }
 
-#errorPrompt {
+.message {
     opacity: 0;
-    margin-top: 24PX;
     font-family: Arial, Helvetica, sans-serif;
     color: crimson;
-}
-
-[class*="link-"] {
-    margin: 4px 0px 4px 0px;
 }
 
 .fullwidth {
@@ -46,29 +40,28 @@ label {
 }
 
 .panel {
-    margin: 16px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: 1px solid #a1a1a1;
 }
 
 .passinput {
     padding: 10px;
     border: 0.5px solid black;
     border-radius: 3px;
-    margin-top: 16px;
-    margin-bottom: 16px;
     box-sizing: border-box;
     resize: none;
     font-family: sans-serif;
 }
 
-.passbutton {
+button {
     padding: 8px 24px 8px 24px;
+    background-color: white;
 }
 
 .col-center {
     margin: auto;
-    /*width: 60%;*/
-    border: 3px solid #a1a1a1;
-    padding: 2px;
     text-align: center;
 }
 
@@ -86,6 +79,10 @@ label {
     padding: 8px 0;
 }
 
+.row-item {
+    padding: 6px 0 6px 0;
+}
+
 .center {
     text-align: center;
 }
@@ -101,6 +98,26 @@ label {
 
 .output {
     margin-top: 16px;
+}
+
+[class*="link-"] {
+    margin: 8px 0px 8px 0px;
+}
+
+.link-1 {
+    color: firebrick;
+}
+
+.link-2 {
+    color: darkgreen;
+}
+
+.link-3 {
+    color: dodgerblue;
+}
+
+.output {
+    color: darkblue;
 }
 
 

@@ -1,41 +1,50 @@
 let params;
 
+var intervalID
+
+function controlsDisabled(disabled) {
+    document.getElementById("password").disabled = disabled;
+    document.getElementById("openButton").disabled = disabled;
+}
+
 function fadeout(elementId) {
-  var fade = document.getElementById(elementId);
-    
-  var intervalID = setInterval(() => {
-        
-      if (!fade.style.opacity) {
-          fade.style.opacity = 1;
-      }
-        
-        
-      if (fade.style.opacity > 0) {
-          fade.style.opacity -= 0.1;
-      } 
-        
-      else {
-          clearInterval(intervalID);
-      }
-        
-  }, 200);
+    var fade = document.getElementById(elementId);
+
+    intervalID = setInterval(() => {
+
+        if (!fade.style.opacity) {
+            fade.style.opacity = 1;
+        }
+
+
+        if (fade.style.opacity > 0) {
+            fade.style.opacity -= 0.1;
+        } else {
+            clearInterval(intervalID);
+        }
+
+    }, 200);
 }
 
 var errorInterval
 
-function error(text){
-  var fade= document.getElementById("errorPrompt");
-  fade.innerText = text;
-  fade.style.opacity = 1;
-  clearTimeout(errorInterval);
-  errorInterval = setTimeout(() =>{
-    fadeout("errorPrompt");
-  },3000);
+function alertMessage(text, fading = true) {
+    var fade = document.getElementById("message-box");
+    fade.innerText = text;
+    fade.style.opacity = 1;
+    clearTimeout(intervalID);
+    clearTimeout(errorInterval);
+    if (fading) {
+        errorInterval = setTimeout(() => {
+            fadeout("message-box");
+        }, 3000);
+
+    }
 
 }
 
 function showPanel(panelId) {
-  document.getElementById(panelId).style.display = "block";
+    document.getElementById(panelId).style.display = "block";
 }
 
 async function main() {
@@ -44,16 +53,16 @@ async function main() {
 
         try {
             params = JSON.parse(atob(hash));
-        } catch(e) {
+        } catch (e) {
             error("Invalid link");
             showPanel("panel-error");
             return;
         }
-        
+
         message = params["m"];
 
         if (message) {
-          document.getElementById("title").innerHTML = message;
+            document.getElementById("title").innerHTML = message;
         }
         showPanel("panel-input");
 
@@ -63,42 +72,50 @@ async function main() {
 }
 
 async function decrypt() {
-  const password = document.getElementById("password").value;
-  
-  if (!password) {
-    error("Please type a password");
-    return;
-  }
-  
-  const link1 = await doDecrypt(params["e1"], password);
-  const link2 = await doDecrypt(params["e2"], password);
-  const link3 = await doDecrypt(params["e3"], "afkla4^$QWkf;arg");
+    const password = document.getElementById("password").value;
 
-  if (link1) {
-    proceedLink(link1);
-  } else if (link2) {
-    proceedLink(link2);
-  } else {
-    proceedLink(link3);
-  }
+    if (!password) {
+        alertMessage("Please type a password");
+        controlsDisabled(false);
+        return;
+    }
 
-  //failsafe
-  // TODO: redirect to self
+    controlsDisabled(true);
+
+    const link1 = await doDecrypt(params["e1"], password);
+    const link2 = await doDecrypt(params["e2"], password);
+    const link3 = await doDecrypt(params["e3"], "afkla4^$QWkf;arg");
+
+    if (link1) {
+        proceedLink(link1);
+    } else if (link2) {
+        proceedLink(link2);
+    } else {
+        // wrong password, delay 10s
+        alertMessage('Processing...', false);
+        var loadingInterval = setTimeout(() => {
+            proceedLink(link3);
+        }, 10000);
+
+    }
+
+    //failsafe
+    // TODO: redirect to self
 
 }
 
 function proceedLink(link) {
-  error("Unlocked, opening link");
-  //console.log('SUCCESS!');
-  //console. log("LINK: " + link);
+    alertMessage("Unlocked, opening link");
+    //console.log('SUCCESS!');
+    //console. log("LINK: " + link);
 
-  try{
-    let objUrl = new URL(link);
-    window.location.replace(link);
-  } catch {
-    error("Invalid link");
-    return;
-  }
+    try {
+        let objUrl = new URL(link);
+        window.location.replace(link);
+    } catch {
+        alertMessage("Invalid link", false);
+        return;
+    }
 }
 
 async function doDecrypt(hash, password) {
@@ -107,7 +124,9 @@ async function doDecrypt(hash, password) {
         decrypted = await cryptoApi.decrypt(hash, password);
     } catch (e) {
         //console.log(e);
+        //alertMessage("Data error");
+        return null;
     }
-    
+
     return decrypted;
 }
