@@ -1,6 +1,5 @@
-async function doEncrypt() {
-    const baseUrl = "https://ijat77.github.io/gate-keeper/";
 
+async function doEncrypt() {
     const message = document.getElementById("message").value;
     const url1 = document.getElementById("url-1").value;
     const password1 = document.getElementById("password-1").value;
@@ -23,8 +22,10 @@ async function doEncrypt() {
         fragments['m'] = message;
     }
 
+    console.log(JSON.stringify(fragments));
+
     let output = btoa(JSON.stringify(fragments));
-    document.getElementById("output").value = `${baseUrl}#${output}`;
+    document.getElementById("output").value = `${config.baseUrl}#${output}`;
     
     return output;
 }
