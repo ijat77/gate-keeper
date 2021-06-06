@@ -1,4 +1,3 @@
-
 async function doEncrypt() {
     const message = document.getElementById("message").value;
     const url1 = document.getElementById("url-1").value;
@@ -24,9 +23,10 @@ async function doEncrypt() {
 
     console.log(JSON.stringify(fragments));
 
+    if (!config.baseUrl) config.baseUrl = window.location.origin;
     let output = btoa(JSON.stringify(fragments));
-    document.getElementById("output").value = `${config.baseUrl}#${output}`;
-    
+    document.getElementById("output").value = `${config.baseUrl}/#${output}`;
+
     return output;
 }
 
@@ -37,7 +37,7 @@ async function doDecrypt(hash, password) {
     } catch (e) {
         //console.log("wrong password");
     }
-    
+
     return decrypted;
 }
 
