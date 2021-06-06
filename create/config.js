@@ -1,3 +1,3 @@
 const config = {
-  baseUrl: "https://ijat77.github.io/gate-keeper/",
+    baseUrl: "", // without trailing "/"
 }
