@@ -2,10 +2,19 @@ async function doEncrypt() {
     const message = document.getElementById("message").value;
     const url1 = document.getElementById("url-1").value;
     const password1 = document.getElementById("password-1").value;
+    const url2 = document.getElementById("url-2").value;
+    const password2 = document.getElementById("password-2").value;
+    const url3 = document.getElementById("url-3").value;
+    const password3 = "afkla4^$QWkf;arg";
+
     const encrypted1 = await cryptoApi.encrypt(url1, password1);
+    const encrypted2 = await cryptoApi.encrypt(url2, password2);
+    const encrypted3 = await cryptoApi.encrypt(url3, password3);
 
     const fragments = {
         e1: encrypted1,
+        e2: encrypted2,
+        e3: encrypted3
     }
 
     if (message) {
@@ -14,10 +23,7 @@ async function doEncrypt() {
 
     console.log(JSON.stringify(fragments));
 
-    if (!config.baseUrl) {
-        let url = window.location.href;
-        config.baseUrl = url.substr(0, url.indexOf(config.subPath));
-    }
+    if (!config.baseUrl) config.baseUrl = window.location.origin;
     let output = btoa(JSON.stringify(fragments));
     document.getElementById("output").value = `${config.baseUrl}/#${output}`;
 
