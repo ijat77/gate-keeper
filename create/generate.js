@@ -2,11 +2,6 @@ async function doEncrypt() {
     const message = document.getElementById("message").value;
     const url1 = document.getElementById("url-1").value;
     const password1 = document.getElementById("password-1").value;
-    const url2 = document.getElementById("url-2").value;
-    const password2 = document.getElementById("password-2").value;
-    const url3 = document.getElementById("url-3").value;
-    const password3 = "afkla4^$QWkf;arg";
-
     const encrypted1 = await cryptoApi.encrypt(url1, password1);
     const encrypted2 = await cryptoApi.encrypt(url2, password2);
     const encrypted3 = await cryptoApi.encrypt(url3, password3);
