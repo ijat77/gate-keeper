@@ -31,17 +31,6 @@ async function doEncrypt() {
     return output;
 }
 
-// async function doDecrypt(hash, password) {
-//     let decrypted;
-//     try {
-//         decrypted = await cryptoApi.decrypt(hash, password);
-//     } catch (e) {
-//         //console.log("wrong password");
-//     }
-
-//     return decrypted;
-}
-
 function copyValue(id) {
     /* Get the text field */
     var copyText = document.getElementById(id);
