@@ -21,24 +21,25 @@ async function doEncrypt() {
         fragments['m'] = message;
     }
 
-    console.log(JSON.stringify(fragments));
-
-    if (!config.baseUrl) config.baseUrl = window.location.origin;
+    if (!config.baseUrl) {
+        let url = window.location.href;
+        config.baseUrl = url.substr(0, url.indexOf(config.subPath));
+    }
     let output = btoa(JSON.stringify(fragments));
     document.getElementById("output").value = `${config.baseUrl}/#${output}`;
 
     return output;
 }
 
-async function doDecrypt(hash, password) {
-    let decrypted;
-    try {
-        decrypted = await cryptoApi.decrypt(hash, password);
-    } catch (e) {
-        //console.log("wrong password");
-    }
+// async function doDecrypt(hash, password) {
+//     let decrypted;
+//     try {
+//         decrypted = await cryptoApi.decrypt(hash, password);
+//     } catch (e) {
+//         //console.log("wrong password");
+//     }
 
-    return decrypted;
+//     return decrypted;
 }
 
 function copyValue(id) {
