@@ -12,8 +12,6 @@ async function doEncrypt() {
         fragments['m'] = message;
     }
 
-    console.log(JSON.stringify(fragments));
-
     if (!config.baseUrl) {
         let url = window.location.href;
         config.baseUrl = url.substr(0, url.indexOf(config.subPath));
@@ -24,16 +22,16 @@ async function doEncrypt() {
     return output;
 }
 
-async function doDecrypt(hash, password) {
-    let decrypted;
-    try {
-        decrypted = await cryptoApi.decrypt(hash, password);
-    } catch (e) {
-        //console.log("wrong password");
-    }
+// async function doDecrypt(hash, password) {
+//     let decrypted;
+//     try {
+//         decrypted = await cryptoApi.decrypt(hash, password);
+//     } catch (e) {
+//         //console.log("wrong password");
+//     }
 
-    return decrypted;
-}
+//     return decrypted;
+// }
 
 function copyValue(id) {
     /* Get the text field */

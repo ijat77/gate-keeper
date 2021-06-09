@@ -1,4 +1,4 @@
-let params;
+var params;
 
 var intervalID
 
@@ -28,9 +28,10 @@ function fadeout(elementId) {
 
 var errorInterval
 
-function alertMessage(text, fading = true) {
+function alertMessage(text, fading = true, color = "crimson") {
     var fade = document.getElementById("message-box");
     fade.innerText = text;
+    fade.style.color = color;
     fade.style.opacity = 1;
     clearTimeout(intervalID);
     clearTimeout(errorInterval);
@@ -59,7 +60,7 @@ async function main() {
             return;
         }
 
-        message = params["m"];
+        let message = params["m"];
 
         if (message) {
             document.getElementById("title").innerHTML = message;
@@ -82,21 +83,30 @@ async function decrypt() {
 
     controlsDisabled(true);
 
-    const link1 = await doDecrypt(params["e1"], password);
-    const link2 = await doDecrypt(params["e2"], password);
-    const link3 = await doDecrypt(params["e3"], "afkla4^$QWkf;arg");
+    const link1 = ('e1' in params) ? await doDecrypt(params["e1"], password) : null;
+
+    const link2 = ('e2' in params) ? await doDecrypt(params["e2"], password) : null;
+
+    const link3 = ('e3' in params) ? await doDecrypt(params["e3"], "afkla4^$QWkf;arg") : null;
 
     if (link1) {
         proceedLink(link1);
-    } else if (link2) {
-        proceedLink(link2);
-    } else {
-        // wrong password, delay 10s
-        alertMessage('Processing...', false);
-        var loadingInterval = setTimeout(() => {
-            proceedLink(link3);
-        }, 10000);
+        return;
+    }
 
+    if (!('e2' in params)) {
+        alertMessage('Wrong password');
+        controlsDisabled(false);
+    } else {
+        if (link2) {
+            proceedLink(link2);
+        } else {
+            // wrong password, delay 10s
+            alertMessage('Processing...', false);
+            var loadingInterval = setTimeout(() => {
+                proceedLink(link3);
+            }, 10000);
+        }
     }
 
     //failsafe
@@ -105,10 +115,7 @@ async function decrypt() {
 }
 
 function proceedLink(link) {
-    alertMessage("Unlocked, opening link");
-    //console.log('SUCCESS!');
-    //console. log("LINK: " + link);
-
+    alertMessage("Opening link", false, "darkgreen");
     try {
         let objUrl = new URL(link);
         window.location.replace(link);
@@ -123,8 +130,6 @@ async function doDecrypt(hash, password) {
     try {
         decrypted = await cryptoApi.decrypt(hash, password);
     } catch (e) {
-        //console.log(e);
-        //alertMessage("Data error");
         return null;
     }
 
