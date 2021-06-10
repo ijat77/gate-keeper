@@ -55,7 +55,7 @@ async function main() {
         try {
             params = JSON.parse(atob(hash));
         } catch (e) {
-            error("Invalid link");
+            //error("Invalid link");
             showPanel("panel-error");
             return;
         }
